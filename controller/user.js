@@ -9,8 +9,14 @@ const { Family } = require("../model/family");
 const user = {
     register: async (req, res) => {
         try {
-            console.log(req.body)
             const { name, email, password, confirmPassword, userName } = req.body;
+
+            // check userName already exist or not
+            const isAlreadyExist = await User.findOne({ userName })
+
+            if (!isAlreadyExist) {
+                return res.json({ success: false, message: "Username already exist" })
+            }
 
             // validate user
             const { success, message } = userValidation(password, confirmPassword, email);
@@ -20,6 +26,7 @@ const user = {
                     message
                 })
             }
+
 
             // encrypt password
             const encryptedPassword = bcrypt.hashSync(password, 10)
@@ -182,7 +189,7 @@ const user = {
                 { $pull: { familyMembershipRequestArray: { familyId } } },
                 { new: true }
             )
-
+            res.json({ success: true, message: "rejected request" })
 
         } catch (error) {
             res.json({ success: false, message: "Failed to reject", error })
@@ -216,7 +223,7 @@ const user = {
                 { new: true }
             )
 
-            res.json({success: true, message: "accepted the request"})
+            res.json({ success: true, message: "accepted the request" })
 
         } catch (error) {
             res.json({ success: false, message: "Failed to reject", error })
