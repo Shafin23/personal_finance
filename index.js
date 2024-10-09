@@ -16,9 +16,14 @@ connectToDB()
 
 // all route
 const user = require('./router/user')
+const family = require('./router/family')
+const cost = require('./router/cost')
+
 
 // routers reletad middleware
 app.use("/user", user)
+app.use("/family", family)
+app.use("/cost", cost)
 
 // tetsing route
 app.get("/", async (req, res) => {

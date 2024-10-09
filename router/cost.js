@@ -1,6 +1,11 @@
-const express = requrie("express");
+const { personalCost } = require("../controller/personalCost");
+
+const express = require("express");
 const router = express.Router();
 
-router.post("/addTarget")
+router.post("/addTarget", personalCost.addTarget)
+router.post("/addCost", personalCost.addCost)
+router.put("/updateCost", personalCost.updateCost)
+router.delete("/deleteCost/:userId/:costId", personalCost.deleteCost)
 
-module.exports = { router }
+module.exports =  router 
