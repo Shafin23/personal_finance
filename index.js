@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: true })); // To parse URL-encoded bodies
 
 // connect to database
 connectToDB()
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
 
 // all route
 const user = require('./router/user')
