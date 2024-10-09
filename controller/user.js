@@ -11,11 +11,16 @@ const user = {
         try {
             const { name, email, password, confirmPassword, userName } = req.body;
 
-            // check userName already exist or not
-            const isAlreadyExist = await User.findOne({ userName })
 
-            if (!isAlreadyExist) {
+            // check userName already exist or not
+            const isUsernameExist = await User.findOne({ userName })
+            const isEmailExist = await User.findOne({ email })
+
+            if (isUsernameExist) {
                 return res.json({ success: false, message: "Username already exist" })
+            }
+            if (isEmailExist) {
+                return res.json({ success: false, message: "Email already exist" })
             }
 
             // validate user
@@ -72,6 +77,7 @@ const user = {
                     message: "User not found"
                 })
             }
+            const user = getUserByEmail || getUserByUserName;
 
             bcrypt.compare(password, user.password, function (err, result) {
                 if (result) {
