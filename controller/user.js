@@ -90,7 +90,8 @@ const user = {
                     res.json({
                         success: true,
                         message: "Login successfull",
-                        token
+                        token,
+                        user
                     })
                 } else {
                     res.json({

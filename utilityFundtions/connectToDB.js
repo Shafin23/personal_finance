@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const connectToDB = () => {
     console.log(1)
-    mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS}@cluster0.6oyupqe.mongodb.net/personal_finance`, {
+    mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS}@cluster0.6oyupqe.mongodb.net/personal_finance?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })

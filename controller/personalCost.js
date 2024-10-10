@@ -6,7 +6,7 @@ const personalCost = {
 
     addTarget: async (req, res) => {
         try {
-            const { target, id } = req.body;
+            const { target, userName } = req.body;
 
             if (target === isNaN) {
                 return res.json({
@@ -16,7 +16,7 @@ const personalCost = {
             }
 
             const updating = await User.findOneAndUpdate(
-                { id: id },
+                { userName },
                 { personalTarget: target },
                 { new: true }
             )
