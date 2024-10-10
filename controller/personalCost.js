@@ -53,12 +53,13 @@ const personalCost = {
     },
     addCost: async (req, res) => {
         try {
-            const { amount, source, myUserName } = req.body;
+            const { amount, source, myUserName, description } = req.body;
 
             // creating new cost
             const newCost = {
                 amount,
                 source,
+                description,
                 id: uuidv4(),
                 date: getFormattedDate()
             }
@@ -90,7 +91,7 @@ const personalCost = {
     },
     updateCost: async (req, res) => {
         try {
-            const { userId, costId, amount, source } = req.body;
+            const { userId, costId, amount, source, description } = req.body;
 
             if (isNaN(amount)) {
                 return res.json({
@@ -105,6 +106,7 @@ const personalCost = {
                     $set: {
                         "personalCost.$.amount": amount,
                         "personalCost.$.source": source,
+                        "personalCost.$.description": description,
                         "personalCost.$.date": getFormattedDate()  // Optionally update the date
                     }
                 },

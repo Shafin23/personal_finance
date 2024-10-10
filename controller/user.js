@@ -109,6 +109,19 @@ const user = {
             })
         }
     },
+    getUserData: async (req, res) => {
+        try {
+            const { userName } = req.params;
+            const userData = await User.findOne({ userName });
+            res.json({ success: true, message: "Successfully retieved the user's data", userData })
+
+        } catch (error) {
+            res.json({
+                success: false,
+                message: "Failed to collect user's data"
+            })
+        }
+    },
     creatingFamily: async (req, res) => {
         try {
             const { familyName, userName } = req.body;

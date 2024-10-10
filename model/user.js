@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     personalCost: [{
         amount: Number,
         source: String,
+        description: String,
         date: String,
         id: String
     }],

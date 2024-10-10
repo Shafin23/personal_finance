@@ -9,5 +9,4 @@ router.post("/addCost", personalCost.addCost)
 router.put("/updateCost", personalCost.updateCost)
 router.delete("/deleteCost/:userId/:costId", personalCost.deleteCost)
 
-
 module.exports =  router 
