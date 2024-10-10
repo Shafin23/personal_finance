@@ -5,7 +5,7 @@ const { uid } = require("uid")
 require('dotenv').config();
 const { userValidation } = require("../utilityFundtions/userValidation");
 const { Family } = require("../model/family");
-const { json } = require("express");
+
 
 const user = {
     register: async (req, res) => {
@@ -234,13 +234,6 @@ const user = {
 
         } catch (error) {
             res.json({ success: false, message: "Failed to reject", error })
-        }
-    },
-    g: async (req, res) => {
-        try {
-            res.json({ success: true, message: "successfully done" })
-        } catch (error) {
-            res.json({ success: false, message: "done" })
         }
     }
 }
