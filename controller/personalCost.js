@@ -41,6 +41,16 @@ const personalCost = {
             })
         }
     },
+    checkTargetExistance: async (req, res) => {
+        try {
+            const { userName } = req.params;
+            const user = await User.findOne({ userName })
+            const { personalTarget } = user;
+            res.json({ success: true, personalTarget })
+        } catch (error) {
+            res.json({ success: false, message: "Unable to see. Something went wrong" })
+        }
+    },
     addCost: async (req, res) => {
         try {
             const { amount, source, myUserName } = req.body;
