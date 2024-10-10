@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post("/register", user.register)
 router.post("/login", user.login)
-router.get("/getUserData", user.getUserData)
+router.get("/getUserData/:userName", user.getUserData)
 router.post("/creatingFamily", user.creatingFamily)
 router.post("/inviteFamilyMember", user.inviteFamilyMember)
 router.post("/rejectFamilyInvitationRequest", user.rejectFamilyInvitationRequest)
